@@ -2,11 +2,12 @@
   "name": "brazers_bets",
   "version": "0.1.0",
   "private": true,
-  "homepage" : "https://yura-matsko.github.io/wc-bets/",
+  "homepage": "https://yura-matsko.github.io/wc-bets/",
   "dependencies": {
     "@material-ui/core": "^1.2.1",
     "@material-ui/icons": "^1.1.0",
     "firebase": "^5.0.4",
+    "gh-pages": "^1.2.0",
     "history": "^4.7.2",
     "immutable": "^3.8.2",
     "react": "^16.4.1",
@@ -28,6 +29,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   }
 }
