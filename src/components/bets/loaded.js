@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Typography from '@material-ui/core/Typography';
 import {Link} from 'react-router-dom';
-import Icon from '@material-ui/core/Icon';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import {updateLoaded} from '../../ducks/bets';
