@@ -1,0 +1,50 @@
+.table-holder {
+  max-height: calc(100vh - 118px);
+  overflow: auto;
+}
+
+.match-header {
+  display: flex;
+  align-items: baseline;
+}
+
+.match-header span {
+  margin: 0 16px 0 0;
+}
+
+.match-date {
+  font-size: 16px;
+  color: #000;
+  font-style: italic;
+}
+
+.match-row {
+  display: flex;
+  align-items: center;
+}
+
+.time,
+.group-name {
+  margin: 0 16px 0 0;
+  white-space: nowrap;
+}
+
+.team-info {
+  width: 100%;
+  text-transform: uppercase;
+  display: flex;
+}
+
+.first-team {
+  text-align: right;
+}
+
+.second-team,
+.first-team {
+  width: 45%;
+}
+
+.score {
+  width: 10%;
+  text-align: center;
+}

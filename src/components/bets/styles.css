@@ -1,0 +1,75 @@
+.bets-form {
+  max-height: calc(100vh - 118px);
+  overflow: auto;
+}
+
+.radio-holder {
+  flex-direction: row !important;
+  white-space: nowrap;
+  width: 80%;
+}
+
+.bet-holder {
+  display: flex;
+  width: 100%;
+  align-items: center;
+}
+
+.app_bar {
+  position: sticky;
+  left: 0;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: #fafafa;
+  z-index: 999;
+}
+
+.input-holder {
+  display: flex;
+  align-items: center;
+}
+
+.input input{
+  width: 40px;
+  text-align: center;
+  -webkit-appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.loaded-component {
+  min-height: calc(100vh - 118px);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon-wrapper {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto 20px;
+  background-color: #4caf50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.icon-wrapper svg {
+  width: 3em;
+  height: 3em;
+  fill: white;
+}
+
+.title {
+  margin: 0 0 16px;
+}
