@@ -24,16 +24,12 @@ const ReducerRecord = Record({
   loading: false,
   loaded: false,
   scores: new List([]),
+  scores_mutate: new List([])
 });
 
 export const ScoreRecord = Record({
   name: null,
   matches: null,
-});
-
-export const ScoreEntities = Record({
-  name: null,
-  bets: null
 });
 
 export default function reducer(state = new ReducerRecord(), action = {}) {
@@ -48,7 +44,7 @@ export default function reducer(state = new ReducerRecord(), action = {}) {
         .set('loading', false)
         .set('loaded', true)
         .set('scores', dataToEntities(payload, ScoreRecord))
-        .set('scores_mutate', scoresToEntities(payload, ScoreEntities));
+        .set('scores_mutate', scoresToEntities(payload));
     default:
       return state;
   }
@@ -64,7 +60,7 @@ export const scoresMutateSelector = createSelector(stateSelector, state => state
 export const loadingSelector = createSelector(stateSelector, state => state.loading);
 export const loadedSelector = createSelector(stateSelector, state => state.loaded);
 export const scoresListSelector = createSelector(scoresSelector, scores => scores.toArray());
-export const scoresMutateListSelector = createSelector(scoresMutateSelector, scores => console.log(scores));
+export const scoresMutateListSelector = createSelector(scoresMutateSelector, scores => scores);
 
 /**
  * Action Creators

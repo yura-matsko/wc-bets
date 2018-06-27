@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 
-import {scoresListSelector, scoresMutateListSelector, fetchAllScores} from '../../ducks/scores';
+import Pie from '../../components/pie';
+
+import {scoresMutateListSelector, fetchAllScores} from '../../ducks/scores';
 import {betsListSelector, fetchAllBets} from '../../ducks/bets';
 
 class TotalPage extends Component {
@@ -13,19 +15,32 @@ class TotalPage extends Component {
   }
 
   render() {
-    const { bets, scores } = this.props;
-
-    console.log(bets);
+    const { total } = this.props;
 
     return (
-      <div>
-        Total
-      </div>
+      <Pie width={480} height={480} total={total} />
     );
   }
 }
 
-export default connect((state) => ({
-  scores: scoresMutateListSelector(state),
-  bets: betsListSelector(state)
-}), {fetchAllScores, fetchAllBets})(TotalPage);
+export default connect((state) => {
+  const scores = scoresMutateListSelector(state);
+  const bets = betsListSelector(state);
+  const total = [];
+
+  bets.map(item => {
+    const score = Object.keys(item.bets).reduce((acc, val) => {
+
+      if(scores[val].option === item.bets[val].option) acc += 1;
+
+      if(item.bets[val].score &&
+        (JSON.stringify(item.bets[val].score) === JSON.stringify(scores[val].score))) acc += 1;
+
+      return acc;
+    }, 0);
+
+    total.push({ name: item.name, score })
+  });
+
+  return {total}
+  }, {fetchAllScores, fetchAllBets})(TotalPage);

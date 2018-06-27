@@ -6,6 +6,11 @@
   "dependencies": {
     "@material-ui/core": "^1.2.1",
     "@material-ui/icons": "^1.1.0",
+    "@vx/gradient": "^0.0.165",
+    "@vx/group": "^0.0.165",
+    "@vx/mock-data": "^0.0.165",
+    "@vx/scale": "^0.0.165",
+    "@vx/shape": "^0.0.168",
     "animated-scroll-to": "^1.2.2",
     "firebase": "^5.0.4",
     "gh-pages": "^1.2.0",
