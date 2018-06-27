@@ -3,7 +3,7 @@ import {Record, List} from 'immutable';
 import {createSelector} from 'reselect';
 import {takeEvery, call, put, all} from 'redux-saga/effects';
 import {fetchScores} from '../api';
-import {dataToEntities} from './utils';
+import {dataToEntities, scoresToEntities} from './utils';
 
 /**
  * Constans
@@ -31,6 +31,11 @@ export const ScoreRecord = Record({
   matches: null,
 });
 
+export const ScoreEntities = Record({
+  name: null,
+  bets: null
+});
+
 export default function reducer(state = new ReducerRecord(), action = {}) {
   const { type, payload } = action;
 
@@ -42,7 +47,8 @@ export default function reducer(state = new ReducerRecord(), action = {}) {
       return state
         .set('loading', false)
         .set('loaded', true)
-        .set('scores', dataToEntities(payload, ScoreRecord));
+        .set('scores', dataToEntities(payload, ScoreRecord))
+        .set('scores_mutate', scoresToEntities(payload, ScoreEntities));
     default:
       return state;
   }
@@ -54,9 +60,11 @@ export default function reducer(state = new ReducerRecord(), action = {}) {
 
 export const stateSelector = state => state[moduleName];
 export const scoresSelector = createSelector(stateSelector, state => state.scores);
+export const scoresMutateSelector = createSelector(stateSelector, state => state.scores_mutate);
 export const loadingSelector = createSelector(stateSelector, state => state.loading);
 export const loadedSelector = createSelector(stateSelector, state => state.loaded);
 export const scoresListSelector = createSelector(scoresSelector, scores => scores.toArray());
+export const scoresMutateListSelector = createSelector(scoresMutateSelector, scores => console.log(scores));
 
 /**
  * Action Creators

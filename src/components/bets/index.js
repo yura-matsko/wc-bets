@@ -24,7 +24,7 @@ class BetsComponent extends Component {
   }
 
   render() {
-    const { loaded, loading } = this.props;
+    const {loaded, loading} = this.props;
     return (
       loading ?
         <Loader/>
@@ -37,12 +37,12 @@ class BetsComponent extends Component {
               </div>
               : <LoadedContainer />
           }
-          </form>
+        </form>
     );
   }
 
   getHeader = () => {
-    const { pristine, submitting } = this.props;
+    const {pristine, submitting} = this.props;
 
     return (
       <header className="app_bar">
@@ -73,8 +73,12 @@ class BetsComponent extends Component {
 
   getCell = (cell) => {
     const id = cell.team1.code
-              + cell.team2.code
-              + (cell.group ? cell.group.split(' ')[1] : '');
+      + cell.team2.code
+      + (cell.group ? cell.group.split(' ')[1] : '');
+
+    const currentDate = new Date();
+    const matchDate = new Date(cell.date);
+    const isDisabled = matchDate < currentDate.setDate(currentDate.getDate() - 1);
 
     return (
       <TableRow key={cell.team1.name}>
@@ -91,10 +95,10 @@ class BetsComponent extends Component {
               {cell.team2.name}
             </span>
           </span>
-          <FormSection className='bet-holder' name={id}>
-            {this.betsContainer()}
-            {this.scoreContainer()}
-          </FormSection>
+            <FormSection className='bet-holder' name={id}>
+              {this.betsContainer(isDisabled)}
+              {this.scoreContainer(isDisabled)}
+            </FormSection>
           </div>
         </TableCell>
       </TableRow>
@@ -109,19 +113,31 @@ class BetsComponent extends Component {
     </span>
   );
 
-  betsContainer = () => (
+  betsContainer = (isDisabled) => (
     <Field className="radio-holder" name='option' component={RadioComponent}>
-      <FormControlLabel value="V1" control={<Radio />} label="V1" />
-      <FormControlLabel value="D" control={<Radio />} label="D" />
-      <FormControlLabel value="V2" control={<Radio />} label="V2" />
+      <FormControlLabel value="V1" disabled={isDisabled} control={<Radio />} label="V1"/>
+      <FormControlLabel value="D" disabled={isDisabled} control={<Radio />} label="D"/>
+      <FormControlLabel value="V2" disabled={isDisabled} control={<Radio />} label="V2"/>
     </Field>
   );
 
-  scoreContainer = () => (
+  scoreContainer = (scoreContainer) => (
     <FormSection className="input-holder" name='score'>
-      <Field className="input" name='t1' type="number" component={InputComponent} />
+      <Field
+        className="input"
+        disabled={scoreContainer}
+        name='t1'
+        type="number"
+        component={InputComponent}
+      />
       <span>-</span>
-      <Field className="input" name='t2' type="number" component={InputComponent} />
+      <Field
+        className="input"
+        disabled={scoreContainer}
+        name='t2'
+        type="number"
+        component={InputComponent}
+      />
     </FormSection>
   );
 }

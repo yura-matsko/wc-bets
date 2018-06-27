@@ -7,3 +7,11 @@ export function dataToEntities(values, DataRecord) {
       new List([])
     )
 }
+
+export function scoresToEntities(values) {
+  const obj = {};
+
+  return values.reduce(
+    (acc, value) => obj
+  , {})
+}
